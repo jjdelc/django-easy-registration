@@ -1,0 +1,44 @@
+Django easy registration
+========================
+
+The goal of Django easy registration is to make user registration as 
+easy as possible to new users without having to ask them for unnecessary
+information during the sign up process.
+
+On your site you should have a topbar or some message with something like:
+    
+    "Hey, I just need your email to know who you are [____________] [Go]"
+
+That form should aim to the registration endpoint, {% url easyreg_register %}.
+
+If the user exists, will redirect her to the regular login form to enter his or 
+her password. (The app comes with an EmailLogin backend that you should plug
+in your settings file)
+
+If there is no user with that email on the system, it will automatically
+create a new user account with dummy values to fill the User model, and a 
+random password. Will send an email to the user with the new password and log
+the user in so he can start using the page right after hitting enter!
+
+Set up
+======
+
+Plug the easyreg urlconf on your urls.py file udner somwhere reasonable.
+
+    url(r'^accounts/', include('easyreg.urls')),
+
+Note that this works *very* similar to Django-registration
+
+Next you'll need to plug the email auth backend on your settings file
+
+    AUTHENTICATION_BACKENDS = (
+        'easyreg.backends.EmailBackend',
+        'django.contrib.auth.backends.ModelBackend',
+    )
+
+And you're good to go.
+
+You might want to personalize your own login, logout, profile templates accordingly to your site.
+
+
+

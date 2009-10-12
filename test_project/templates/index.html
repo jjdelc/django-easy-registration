@@ -1,0 +1,30 @@
+<html>
+<head>
+<style type="text/css">
+body, html {
+    margin: 0; padding: 0;
+}
+#easyreg {
+    background-color: #333;
+    color: #FAFAFA;
+    padding: 10px;
+}
+</style>
+</head>
+<body>
+<div id="easyreg">
+{% if not user.is_authenticated %}
+<form method="post" action="{% url easyreg_register %}">
+<p>Hey, I need your email to identify you {{easyform.email}} <input type="submit" value="Continue"/></p>
+</form>
+{% else %}
+<p><a href="{% url auth_logout %}">Log out</a></p>
+{% endif %}
+</div>
+{% if user.is_authenticated %}
+<h1>Hi, i know you :)</h1>
+{% else %}
+<h1>Greetings stranger</h1>
+{% endif %}
+</body>
+</html>

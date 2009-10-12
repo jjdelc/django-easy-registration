@@ -1,0 +1,8 @@
+Howdy,
+You've just created an account on {{site.name}}.
+
+Next time you come back, use these to log back in:
+    email:      {{email}}
+    password:   {{password}}
+
+Thanks for joining!
