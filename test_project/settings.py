@@ -64,7 +64,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 DEBUG_TOOLBAR_PANELS = (
@@ -94,6 +93,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.auth',
     'easyreg',
-    'debug_toolbar',
 )
 
+EMAIL_PORT = 1025

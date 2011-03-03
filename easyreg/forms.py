@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django import forms
+from django.contrib import messages
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
@@ -45,8 +46,8 @@ class EmailSignupForm(forms.Form):
         The user's username will be a slugification of the email
         (beware for dups?)
         """
-        user = User(username=slugify(self.email),
-            email=self.email)
+        username = email.replace('@', '--')
+        user = User(username=slugify(username), email=self.email)
         self.make_random_password()
         user.set_password(self.password)
         user.save()
@@ -72,11 +73,11 @@ class EmailSignupForm(forms.Form):
         mail_subject = render_to_string(
             'easyreg/mail/success_registration_subject.txt', {
                 'site': current_site,
-            })
+            }).split('\n')[0]
         send_mail(mail_subject, mail_body, settings.DEFAULT_FROM_EMAIL,
             [self.email])
 
-        self.user.message_set.create(message=_(u'We just created an account for you, check your mail for more information.'))
+        messages.info(request, u'We just created an account for you, check your mail for more information.')
 
 
 class EmailAuthenticationForm(forms.Form):

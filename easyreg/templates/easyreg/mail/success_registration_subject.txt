@@ -1,1 +1,1 @@
-Your new account on {{site.name}} has been created 
+Your new account on {{site.name}} has been created
